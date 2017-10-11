@@ -1,0 +1,11 @@
+<h1>Reviews#new</h1>
+
+<%= simple_form_for [@restaurant, @review] do |f| %>
+  <!-- USE BELOW FOR ACTUAL -->
+  <%#= f.input :content %>
+  <%#= f.input :rating, collection: Review::CATEGORIES %>
+  <!-- USE BELOW FOR DUMMY / FAKER IN ERB -->
+  <%= f.input :content, input_html: { value: Faker::Lorem.paragraph(sentence_count = 6) } %>
+  <%= f.input :rating, input_html: { value: (0..5).to_a.sample } %>
+  <%= f.submit "add a review", class: "btn btn-primary btn-sm" %>
+<% end %>

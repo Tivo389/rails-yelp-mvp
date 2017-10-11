@@ -1,0 +1,35 @@
+<h1>Restaurants#show</h1>
+<!-- <p>Find me in app/views/restaurants/show.html.erb</p> -->
+
+  <div>
+    <h4><%= @restaurant.name %></h4>
+    <p><%= @restaurant.category %></p>
+    <p><%= @restaurant.address %></p>
+    <p><%= @restaurant.phone_number %></p>
+    <hr class="line__h--style-1">
+    <!-- '@restaurant' DOES NOT have 'reviews' as a visible attribute, yet it is visible when '@restaurant.reviews' is called for...??? Seems to be an active record 'thing'? -->
+    <% @restaurant.reviews.each do |review| %>
+      <p><%= review.content %></p>
+      <p><%= review.rating %></p>
+    <% end %>
+
+    <%= link_to "Back to list", restaurants_path, class: "btn btn-primary btn-sm" %>
+    <%= link_to "Add a review", new_restaurant_review_path(@restaurant.id), class: "btn btn-primary btn-sm" %>
+    <%#= link_to "Edit", edit_restaurant_path, class: "btn btn-primary btn-sm" %>
+
+
+
+    <%#= link_to 'Delete', restaurant_path, class: "btn btn-primary btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>
+    <!-- This creates a link (<a> tag) with the word 'Delete'.-->
+    <!-- It sounds odd but its linked to itself. I think it's 'getting' itself. -->
+    <!-- It gets itself and submits itself to 'method: :delete' -->
+    <!-- We confirm with the user, before it is submit to the delete method (aka: destroy). -->
+    <!-- The following code takes place within 'restaurants_controller.rb' but noted here for easier reading. -->
+      <!-- before_action :set_restaurant, only: [:show, :edit, :destroy] -->
+        <!-- Due to before_action, the restaurant instance is returned -->
+      <!-- @restaurant.destroy -->
+        <!-- The restaurant instance is deleted -->
+      <!-- redirect_to restaurants_path -->
+        <!-- Once it is deleted, you are automatically redirected to the index page -->
+
+  </div>
